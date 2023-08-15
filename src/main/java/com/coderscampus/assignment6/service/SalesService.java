@@ -11,16 +11,16 @@ public class SalesService {
 //	private Map<String, List<Sales>> salesData;
 //	private Map<String,BigDecimal<>>salesDataSums;
 //	private Integer sum;
-//	private String title;
+	private String title;
 //	private String minMonthYear;
 //	private String maxMonthYear;
 //	private String yearMonthMaxFormatted;
 //	private String yearMonthMinFormatted;
 
 	public SalesService(String filePath) {
-		System.out.println("Inside sales service!" + filePath);
+		System.out.println("Inside sales service! " + filePath);
         fileService = new FileService(filePath);
-//        title = fileService.getTitle();
+        title = fileService.getTitle();
 //        salesData = fileService.group_data(); // -> sales objects
 	}
 

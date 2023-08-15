@@ -7,21 +7,22 @@ import com.coderscampus.assignment6.domain.Sales;
 
 public class SalesService {
 	private FileService fileService;
-	private DateService dateService;
-	private Map<String, List<Sales>> salesData;private Map<String,BigDecimal<>>salesDataSums;
-	private Integer sum;
-	private String title;
-	private String minMonthYear;
-	private String maxMonthYear;
-	private String yearMonthMaxFormatted;
-	private String yearMonthMinFormatted;
+//	private DateService dateService;
+//	private Map<String, List<Sales>> salesData;
+//	private Map<String,BigDecimal<>>salesDataSums;
+//	private Integer sum;
+//	private String title;
+//	private String minMonthYear;
+//	private String maxMonthYear;
+//	private String yearMonthMaxFormatted;
+//	private String yearMonthMinFormatted;
 
-	private void fileService(String filePath) {
-    	
+	public SalesService(String filePath) {
+		System.out.println("Inside sales service!" + filePath);
         fileService = new FileService(filePath);
 //        title = fileService.getTitle();
 //        salesData = fileService.group_data(); // -> sales objects
-    }
+	}
 
 //	private void calculateData() {
 //
@@ -59,4 +60,4 @@ public class SalesService {
 //
 //	private void writeToFile() {
 ////        fileService.writeToFile(pass title, formatted max/min, salesDataSums)
-//	}
+}

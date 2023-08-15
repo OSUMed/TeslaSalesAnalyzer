@@ -22,7 +22,7 @@ public class SalesService {
         fileService = new FileService(filePath);
         title = fileService.getTitle();
   
-//        salesData = fileService.groupData(); // -> sales objects
+        salesData = fileService.groupData(); // -> sales objects
 	}
 
 //	private void calculateData() {

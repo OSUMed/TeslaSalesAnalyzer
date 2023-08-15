@@ -4,13 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.coderscampus.assignment6.domain.Sales;
 
 public class FileService {
-	private Map<String, List<Sales>> salesData;
+	private Map<String, List<Sales>> salesData = new HashMap<>();
 	private ArrayList<Sales> saleObjects = new ArrayList<>();
 	private List<String> dataArray = new ArrayList<String>();
 	private String filePath;
@@ -20,10 +22,6 @@ public class FileService {
 		this.filePath = filePath;
 		readFile();
 		loadData();
-	      for (Sales s: saleObjects) {
-	        	System.out.println(s);
-	        }
-
 	}
 
 	private void loadData() {
@@ -31,10 +29,7 @@ public class FileService {
 		for (String line : dataArray) {
 			String[] items = line.split(",");
 			String[] yearRough = items[0].split("-");
-			for (String i: yearRough) {
-				
-				System.out.println(i);
-			}
+
 			Sales newRecord = new Sales(items[0], items[1], "19" + yearRough[1]);
 			saleObjects.add(newRecord);
 		}
@@ -81,13 +76,15 @@ public class FileService {
 	}
 
 	Map<String, List<Sales>> groupData() {
-		for (Sales sale: saleObjects) {
-			
+		salesData = saleObjects.stream().collect(Collectors.groupingBy(Sales::getYear));
+
+		for (Map.Entry<String, List<Sales>> entry : salesData.entrySet()) {
+			String key = entry.getKey();
+			List<Sales> salesList = entry.getValue();
+
+			System.out.println("Key: " + key + ", Value: " + salesList);
 		}
-		
-		
-		
-		
+
 		return salesData;
 	}
 

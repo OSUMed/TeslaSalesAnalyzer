@@ -3,6 +3,7 @@ package com.coderscampus.assignment6.service;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -88,7 +89,23 @@ public class FileService {
 		return salesData;
 	}
 
-	private void writeToFile(String title) {
+	private void writeToFile(Map<String, BigDecimal> salesDataSums, String title, String bestMonth, String minMonth) {
+		// Write to File Logic:
+	}
+
+	private List<String> makeFileText(Map<String, BigDecimal> salesDataSums, String title, String bestMonth,
+			String minMonth) {
+		List<String> exportData = new ArrayList<>();
+//		exportData.add ( {title} Yearly Sales Report )
+//		exportData.add ( --------------------------- )
+//		---------------------------
+//      for each in salesDataSums
+//            exportData.add(salesDataSums[key] -> salesDataSums[value]
+//      
+//		
+//		exportData.add (\nThe best month for {title} was: {bestMonth})
+//		 exportData.add (The worst month for {title} was: {minMonth})
+		return exportData;
 
 	}
 

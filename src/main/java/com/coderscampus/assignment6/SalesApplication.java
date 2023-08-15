@@ -11,9 +11,17 @@ public class SalesApplication {
 		System.out.println("Hello!");
 		for (String file_path: FILES_TEST) {
 			SalesService salesService = new SalesService(file_path);
-//			salesService.calculateData();
+			salesService.calculateData();
 //			salesService.WriteToFile();
 		}
 	}
+	
+	// To Dos:
+	// 1. get sum
+	// 2. get min and remember year
+	// 3. get max and remember year
+	// 4. write to file
+	// 
+	// 
 
 }

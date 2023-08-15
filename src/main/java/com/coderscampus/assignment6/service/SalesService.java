@@ -25,15 +25,23 @@ public class SalesService {
         salesData = fileService.groupData(); // -> sales objects
 	}
 
-//	private void calculateData() {
-//
-////        for key in salesData:
-////            yearMonthMax = findMax(value)
-////            yearMonthMin = findMin(value)
-////            3 times so try updating yearMonthMax/yearMonthMin
-////        for key in salesData:
-////            findSum(value)
-//	}
+	public void calculateData() {
+
+//        for key in salesData:
+//            yearMonthMax = findMax(value)
+//            yearMonthMin = findMin(value)
+//            3 times so try updating yearMonthMax/yearMonthMin
+//		  
+//		  Get the formatted dates for exporting:
+//		  yearMonthMaxFormatted = getDate(yearMonthMax)
+//		  yearMonthMinFormatted = getDate(yearMonthMin)
+
+		
+//		  Go through each year and sum them and insert into gra:
+//        for key in salesData:
+//            sum = findSum(value)
+//		  	  salesDataSums[key] = sum
+	}
 //
 //	private void findMax() {
 //

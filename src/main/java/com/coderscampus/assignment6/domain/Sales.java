@@ -2,6 +2,12 @@ package com.coderscampus.assignment6.domain;
 
 public class Sales {
 	private String date;
+	private String sales;
+	
+	public Sales(String date, String sales) {
+		this.date = date;
+		this.sales = sales;
+	}
 	public String getDate() {
 		return date;
 	}
@@ -18,5 +24,5 @@ public class Sales {
 	public String toString() {
 		return "Sales [date=" + date + ", sales=" + sales + "]";
 	}
-	private String sales;
+	
 }

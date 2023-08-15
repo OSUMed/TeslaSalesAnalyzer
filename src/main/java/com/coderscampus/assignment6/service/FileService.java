@@ -17,8 +17,8 @@ public class FileService {
 		return salesData;
 	}
 
-	private void getTitle() {
-
+	private String getTitle() {
+		return "String";
 	}
 
 	private void writeToFile(String title) {

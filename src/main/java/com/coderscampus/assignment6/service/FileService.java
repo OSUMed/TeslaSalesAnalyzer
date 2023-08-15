@@ -20,6 +20,9 @@ public class FileService {
 		this.filePath = filePath;
 		readFile();
 		loadData();
+	      for (Sales s: saleObjects) {
+	        	System.out.println(s);
+	        }
 
 	}
 
@@ -27,25 +30,36 @@ public class FileService {
 		// TODO Auto-generated method stub
 		for (String line : dataArray) {
 			String[] items = line.split(",");
-			Sales newRecord = new Sales(items[0], items[1]);
+			String[] yearRough = items[0].split("-");
+			for (String i: yearRough) {
+				
+				System.out.println(i);
+			}
+			Sales newRecord = new Sales(items[0], items[1], "19" + yearRough[1]);
 			saleObjects.add(newRecord);
 		}
 	}
+
 	private void parseTitle() {
 		String[] titleRough = filePath.split("\\.");
 		if (titleRough[0].equals("model3")) {
-		    title = "Model 3";
+			title = "Model 3";
 		} else if (titleRough[0].equals("modelX")) {
-		    title = "Model X";
+			title = "Model X";
 		} else if (titleRough[0].equals("modelS")) {
-		    title = "Model S";
+			title = "Model S";
 		}
 
 	}
+
+	String getTitle() {
+		return title;
+	}
+
 	private void readFile() {
 		// Get Title:
 		parseTitle();
-		
+
 		// Get lines:
 		BufferedReader reader;
 		try {
@@ -66,12 +80,15 @@ public class FileService {
 
 	}
 
-	private Map<String, List<Sales>> groupData() {
+	Map<String, List<Sales>> groupData() {
+		for (Sales sale: saleObjects) {
+			
+		}
+		
+		
+		
+		
 		return salesData;
-	}
-
-	String getTitle() {
-		return title;
 	}
 
 	private void writeToFile(String title) {

@@ -2,12 +2,22 @@ package com.coderscampus.assignment6.domain;
 
 public class Sales {
 	private String date;
+	private String year;
 	private String sales;
+
 	
-	public Sales(String date, String sales) {
+	public Sales(String date, String sales, String year) {
 		this.date = date;
 		this.sales = sales;
+		this.year = year;
 	}
+	public String getYear() {
+		return year;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+
 	public String getDate() {
 		return date;
 	}
@@ -22,7 +32,8 @@ public class Sales {
 	}
 	@Override
 	public String toString() {
-		return "Sales [date=" + date + ", sales=" + sales + "]";
+		return "Sales [date=" + date + ", year=" + year + ", sales=" + sales + "]";
 	}
+	
 	
 }

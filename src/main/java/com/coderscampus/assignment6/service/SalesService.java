@@ -8,7 +8,7 @@ import com.coderscampus.assignment6.domain.Sales;
 public class SalesService {
 	private FileService fileService;
 //	private DateService dateService;
-//	private Map<String, List<Sales>> salesData;
+	private Map<String, List<Sales>> salesData;
 //	private Map<String,BigDecimal<>>salesDataSums;
 //	private Integer sum;
 	private String title;
@@ -21,7 +21,8 @@ public class SalesService {
 		System.out.println("Inside sales service! " + filePath);
         fileService = new FileService(filePath);
         title = fileService.getTitle();
-//        salesData = fileService.group_data(); // -> sales objects
+  
+//        salesData = fileService.groupData(); // -> sales objects
 	}
 
 //	private void calculateData() {

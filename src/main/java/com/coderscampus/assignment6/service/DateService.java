@@ -19,6 +19,7 @@ public class DateService {
 	public DateService(String month, String year) {
 		this.month = month;
 		this.year = year;
+		createFormattedDate();
 	}
 
 	public void createFormattedDate() {

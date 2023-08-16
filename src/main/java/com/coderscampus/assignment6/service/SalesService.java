@@ -71,8 +71,16 @@ public class SalesService {
 	        	}
 	        }
 		});
-		System.out.println(minMonthYear);
-		System.out.println(maxMonthYear);
+		
+		String[] minMonthYearList = minMonthYear.getDate().split("-");
+		String[] maxMonthYearList = maxMonthYear.getDate().split("-");
+		DateService dateServiceMin = new DateService(minMonthYearList[0], minMonthYearList[1]);
+		DateService dateServiceMax = new DateService(maxMonthYearList[0], maxMonthYearList[1]);
+		yearMonthMaxFormatted = dateServiceMin.getYearMonthString();
+		yearMonthMinFormatted = dateServiceMax.getYearMonthString();
+
+		System.out.println(yearMonthMaxFormatted);
+		System.out.println(yearMonthMinFormatted);
 //		for (Map.Entry<String, BigDecimal> entry2 : this.salesDataSums.entrySet()) {
 //			String key2 = entry2.getKey();
 //			BigDecimal value2 = entry2.getValue();

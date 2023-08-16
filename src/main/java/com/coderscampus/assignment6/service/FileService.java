@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -123,11 +124,17 @@ public class FileService {
 		List<String> exportData = new ArrayList<>();
 		exportData.add(title + " Yearly Sales Report");
 		exportData.add("---------------------------");
+		ArrayList<String> collectEntries = new ArrayList<>();
 		salesDataSums.entrySet().stream().forEach(entry -> {
 			String key = entry.getKey();
 			BigDecimal value = entry.getValue();
-			exportData.add(key + " -> " + value);
+			collectEntries.add(key + " -> " + value);
 		});
+		Collections.reverse(collectEntries);
+		for (String entry: collectEntries) {
+			exportData.add(entry);
+		}
+		
 		exportData.add("\nThe best month for " + title + " was: " + yearMonthMaxFormatted);
 		exportData.add("\nThe worst month for " + title + " was: " + yearMonthMinFormatted + "\n");
 		return exportData;

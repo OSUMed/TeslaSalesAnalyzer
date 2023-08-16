@@ -34,7 +34,7 @@ public class FileService {
 			String[] items = line.split(",");
 			String[] yearRough = items[0].split("-");
 
-			Sales newRecord = new Sales(items[0], items[1], "19" + yearRough[1]);
+			Sales newRecord = new Sales(items[0], items[1], "20" + yearRough[1]);
 			saleObjects.add(newRecord);
 		}
 	}
@@ -43,10 +43,10 @@ public class FileService {
 		String[] titleRough = filePath.split("\\.");
 		if (titleRough[0].equals("model3")) {
 			title = "Model 3";
-		} else if (titleRough[0].equals("modelX")) {
-			title = "Model X";
 		} else if (titleRough[0].equals("modelS")) {
 			title = "Model S";
+		} else {
+			title = "Model X";
 		}
 
 	}
@@ -136,7 +136,7 @@ public class FileService {
 		}
 		
 		exportData.add("\nThe best month for " + title + " was: " + yearMonthMaxFormatted);
-		exportData.add("\nThe worst month for " + title + " was: " + yearMonthMinFormatted + "\n");
+		exportData.add("The worst month for " + title + " was: " + yearMonthMinFormatted + "\n");
 		return exportData;
 
 	}

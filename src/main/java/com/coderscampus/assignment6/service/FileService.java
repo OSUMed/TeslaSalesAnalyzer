@@ -94,10 +94,11 @@ public class FileService {
 
 	void writeToFile(String title, String yearMonthMaxFormatted, String yearMonthMinFormatted,
 			Map<String, BigDecimal> salesDataSums) {
-		// Write to File Logic:
+
+		// Prepare item to write into file:
 		List<String> exportData = makeFileText(title, yearMonthMaxFormatted, yearMonthMinFormatted, salesDataSums);
 
-		// Get lines:
+		// Write lines to file:
 		BufferedWriter writer = null;
 		try {
 			writer = new BufferedWriter(new FileWriter("output.txt", true));

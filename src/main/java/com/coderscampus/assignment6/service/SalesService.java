@@ -64,7 +64,7 @@ public class SalesService {
 		salesData.entrySet().stream().forEach(entry -> {
 			String key = entry.getKey();
 			List<Sales> salesList = entry.getValue();
-			// Use max to see what element will return -1 against others, and thus, the
+			// Use min to see what element will return -1 against others, and thus, the
 			// greatest
 			Optional<Sales> minSales = salesList.stream()
 					.min((sales1, sales2) -> sales1.getSales().compareTo(sales2.getSales()));

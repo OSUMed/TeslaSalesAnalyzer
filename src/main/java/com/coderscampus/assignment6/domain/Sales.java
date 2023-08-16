@@ -1,14 +1,16 @@
 package com.coderscampus.assignment6.domain;
 
+import java.math.BigDecimal;
+
 public class Sales {
 	private String date;
 	private String year;
-	private String sales;
+	private BigDecimal sales;
 
 	
 	public Sales(String date, String sales, String year) {
 		this.date = date;
-		this.sales = sales;
+		this.sales = new BigDecimal(sales);
 		this.year = year;
 	}
 	public String getYear() {
@@ -24,12 +26,13 @@ public class Sales {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getSales() {
+	public BigDecimal getSales() {
 		return sales;
 	}
 	public void setSales(String sales) {
-		this.sales = sales;
+		this.sales = new BigDecimal(sales);
 	}
+	
 	@Override
 	public String toString() {
 		return "Sales [date=" + date + ", year=" + year + ", sales=" + sales + "]";

@@ -8,6 +8,9 @@ public class Sales {
 	private BigDecimal sales;
 
 	
+	public Sales(String sales) {
+		this.sales = new BigDecimal(sales);
+	}
 	public Sales(String date, String sales, String year) {
 		this.date = date;
 		this.sales = new BigDecimal(sales);

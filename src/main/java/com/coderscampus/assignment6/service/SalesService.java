@@ -15,8 +15,8 @@ public class SalesService {
 	private Map<String, BigDecimal> salesDataSums;
 //	private Integer sum;
 	private String title;
-	private String minMonthYear;
-	private String maxMonthYear;
+	private Sales minMonthYear;
+	private Sales maxMonthYear;
 	private String yearMonthMaxFormatted;
 	private String yearMonthMinFormatted;
 
@@ -42,19 +42,37 @@ public class SalesService {
 		});
 		
 		// Get the Max and Min:
-		BigDecimal globalMax = 0;
+		maxMonthYear = new Sales("0");
+		minMonthYear = new Sales(Integer.toString(Integer.MAX_VALUE));
+
+		// For Max:
 		salesData.entrySet().stream().forEach(entry -> {
 			String key = entry.getKey();
 			List<Sales> salesList = entry.getValue();
-		  // Using max to find the Sales object with the highest sales value
-	        Optional<Sales> maxSales = salesList.stream()
-	            .max((sales1, sales2) -> sales1.getSales().compareTo(sales2.getSales()));
-	        if (maxSales.isPresent()) {	        	
-				globalMax = Math.max(globalMax, maxSales.get().getSales());
-	        }
-
-			this.salesDataSums.put(key, sum);
+			// Use max to see what element will return -1 against others, and thus, the greatest
+			Optional<Sales> maxSales = salesList.stream()
+					.max((sales1, sales2) -> sales1.getSales().compareTo(sales2.getSales()));
+			if (maxSales.isPresent()) {	   
+				if (maxSales.get().getSales().compareTo(maxMonthYear.getSales()) > 0) {
+					maxMonthYear = maxSales.get();
+				}
+			}
 		});
+		// For Min:
+		salesData.entrySet().stream().forEach(entry -> {
+			String key = entry.getKey();
+			List<Sales> salesList = entry.getValue();
+		  // Use max to see what element will return -1 against others, and thus, the greatest
+	        Optional<Sales> minSales = salesList.stream()
+	            .min((sales1, sales2) -> sales1.getSales().compareTo(sales2.getSales()));
+	        if (minSales.isPresent()) {	   
+	        	if (minSales.get().getSales().compareTo(minMonthYear.getSales()) < 0) {
+	        		minMonthYear = minSales.get();
+	        	}
+	        }
+		});
+		System.out.println(minMonthYear);
+		System.out.println(maxMonthYear);
 //		for (Map.Entry<String, BigDecimal> entry2 : this.salesDataSums.entrySet()) {
 //			String key2 = entry2.getKey();
 //			BigDecimal value2 = entry2.getValue();

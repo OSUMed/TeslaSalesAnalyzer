@@ -1,7 +1,9 @@
 package com.coderscampus.assignment6.service;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -89,22 +91,45 @@ public class FileService {
 		return salesData;
 	}
 
-	private void writeToFile(Map<String, BigDecimal> salesDataSums, String title, String bestMonth, String minMonth) {
+	void writeToFile(String title, String yearMonthMaxFormatted, String yearMonthMinFormatted,
+			Map<String, BigDecimal> salesDataSums) {
 		// Write to File Logic:
+		List<String> exportData = makeFileText(title, yearMonthMaxFormatted, yearMonthMinFormatted, salesDataSums);
+
+		// Get lines:
+		BufferedWriter writer = null;
+		try {
+			writer = new BufferedWriter(new FileWriter("output.txt", true));
+			for (String line : exportData) {
+				System.out.println(line);
+				writer.write(line);
+				writer.newLine();
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (writer != null)
+				try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
 	}
 
-	private List<String> makeFileText(Map<String, BigDecimal> salesDataSums, String title, String bestMonth,
-			String minMonth) {
+	private List<String> makeFileText(String title, String yearMonthMaxFormatted, String yearMonthMinFormatted,
+			Map<String, BigDecimal> salesDataSums) {
 		List<String> exportData = new ArrayList<>();
-//		exportData.add ( {title} Yearly Sales Report )
-//		exportData.add ( --------------------------- )
-//		---------------------------
-//      for each in salesDataSums
-//            exportData.add(salesDataSums[key] -> salesDataSums[value]
-//      
-//		
-//		exportData.add (\nThe best month for {title} was: {bestMonth})
-//		 exportData.add (The worst month for {title} was: {minMonth})
+		exportData.add(title + " Yearly Sales Report");
+		exportData.add("---------------------------");
+		salesDataSums.entrySet().stream().forEach(entry -> {
+			String key = entry.getKey();
+			BigDecimal value = entry.getValue();
+			exportData.add(key + " -> " + value);
+		});
+		exportData.add("\nThe best month for " + title + " was: " + yearMonthMaxFormatted);
+		exportData.add("\nThe worst month for " + title + " was: " + yearMonthMinFormatted + "\n");
 		return exportData;
 
 	}

@@ -9,10 +9,10 @@ public class SalesApplication {
 
 	public static void main(String[] args) {
 		System.out.println("Hello!");
-		for (String file_path: FILES_TEST) {
+		for (String file_path: FILES) {
 			SalesService salesService = new SalesService(file_path);
 			salesService.calculateData();
-//			salesService.WriteToFile();
+			salesService.writeToFile();
 		}
 	}
 	

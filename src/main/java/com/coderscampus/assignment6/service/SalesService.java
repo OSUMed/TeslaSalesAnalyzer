@@ -10,10 +10,8 @@ import com.coderscampus.assignment6.domain.Sales;
 
 public class SalesService {
 	private FileService fileService;
-//	private DateService dateService;
 	private Map<String, List<Sales>> salesData;
 	private Map<String, BigDecimal> salesDataSums;
-//	private Integer sum;
 	private String title;
 	private Sales minMonthYear;
 	private Sales maxMonthYear;
@@ -31,32 +29,19 @@ public class SalesService {
 	public void calculateData() {
 		System.out.println("Print the dict: ");
 
-		// Get the Max and Min:
-		
+		// Do Calcuations:
 		findSum();
 		findMax();
 		findMin();
-		
-		
+
+		// Format dates for write to file:
 		yearMonthMaxFormatted = formatDates(maxMonthYear);
 		yearMonthMinFormatted = formatDates(minMonthYear);
-		
-//		String[] minMonthYearList = minMonthYear.getDate().split("-");
-//		String[] maxMonthYearList = maxMonthYear.getDate().split("-");
-//		DateService dateServiceMin = new DateService(minMonthYearList[0], minMonthYearList[1]);
-//		DateService dateServiceMax = new DateService(maxMonthYearList[0], maxMonthYearList[1]);
-//		yearMonthMaxFormatted = dateServiceMin.getYearMonthString();
-//		yearMonthMinFormatted = dateServiceMax.getYearMonthString();
 
-//		System.out.println(maxMonthYear);
-//		System.out.println(yearMonthMaxFormatted);
-//		System.out.println(minMonthYear);
-//		System.out.println(yearMonthMinFormatted);
 	}
 
 	private void findMax() {
 		maxMonthYear = new Sales("0");
-
 		// Find Max:
 		salesData.entrySet().stream().forEach(entry -> {
 			String key = entry.getKey();
@@ -110,6 +95,7 @@ public class SalesService {
 		return yearMonthFormatted;
 	}
 
-//	private void writeToFile() {
-////        fileService.writeToFile(pass title, formatted max/min, salesDataSums)
+	public void writeToFile() {
+		fileService.writeToFile(title, yearMonthMaxFormatted, yearMonthMinFormatted, salesDataSums);
+	}
 }

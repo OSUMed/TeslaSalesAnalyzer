@@ -19,17 +19,17 @@ public class SalesService {
 	private String yearMonthMinFormatted;
 
 	public SalesService(String filePath) {
-		System.out.println("Inside sales service! " + filePath);
+		
+		// Initialize Service with data grouped by year & stored title:
 		fileService = new FileService(filePath);
 		title = fileService.getTitle();
-
-		salesData = fileService.groupData(); // -> sales objects
+		salesData = fileService.groupData(); 
 	}
 
 	public void calculateData() {
 		System.out.println("Print the dict: ");
 
-		// Do Calcuations:
+		// Do Calculations:
 		findSum();
 		findMax();
 		findMin();
@@ -82,6 +82,8 @@ public class SalesService {
 		salesData.entrySet().stream().forEach(entry -> {
 			String key = entry.getKey();
 			List<Sales> listValues = entry.getValue();
+			
+			// Use the add method from the BigDecimal class as the accumulator method for reduce()
 			BigDecimal sum = listValues.stream().map(salesItem -> salesItem.getSales()).reduce(BigDecimal.ZERO,
 					(accumulator, value) -> accumulator.add(value));
 			this.salesDataSums.put(key, sum);

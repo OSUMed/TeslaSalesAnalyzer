@@ -35,19 +35,24 @@ public class DateService {
 	}
 
 	private YearMonth parseYearMonth() {
+		// Create formatters using specified patterns for year and month
 		DateTimeFormatter yearFormatter = DateTimeFormatter.ofPattern(YEAR_PATTERN, Locale.ENGLISH);
 		DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern(MONTH_PATTERN, Locale.ENGLISH);
 		
-		// Use 'this' to refer to the instance variable
+		// Use formatters to parse input strings and obtain Year and Month instances
 		Month month = Month.from(monthFormatter.parse(this.month));
 		Year year = Year.from(yearFormatter.parse(this.year));
 		
+		// Retrieve the numerical values from the parsed Month and Year objects
 		int yearValue = year.getValue();
 		int monthValue = month.getValue();
+
+		// Construct and return a YearMonth object using these values
 		return YearMonth.of(yearValue, monthValue);
 	}
 
 	private static String formatYearMonth(YearMonth yearMonth) {
+		// Define a formatter and use it to format YearMonth into a string
 		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(OUTPUT_PATTERN, Locale.ENGLISH);
 		return yearMonth.format(outputFormatter);
 	}

@@ -23,17 +23,18 @@ public class FileService {
 	private String title;
 
 	public FileService(String filePath) {
+		// Read File and create user objects during FileService initialization:
 		this.filePath = filePath;
 		readFile();
 		loadData();
 	}
 
 	private void loadData() {
-		// TODO Auto-generated method stub
 		for (String line : dataArray) {
 			String[] items = line.split(",");
 			String[] yearRough = items[0].split("-");
 
+			// Concatenate year to simplify logic later:
 			Sales newRecord = new Sales(items[0], items[1], "20" + yearRough[1]);
 			saleObjects.add(newRecord);
 		}
@@ -80,15 +81,8 @@ public class FileService {
 	}
 
 	Map<String, List<Sales>> groupData() {
+		// Group sales objects by their year, using the year as the key and the sales objects as values.
 		salesData = saleObjects.stream().collect(Collectors.groupingBy(Sales::getYear));
-
-		for (Map.Entry<String, List<Sales>> entry : salesData.entrySet()) {
-			String key = entry.getKey();
-			List<Sales> salesList = entry.getValue();
-
-			System.out.println("Key: " + key + ", Value: " + salesList);
-		}
-
 		return salesData;
 	}
 
@@ -122,6 +116,8 @@ public class FileService {
 
 	private List<String> makeFileText(String title, String yearMonthMaxFormatted, String yearMonthMinFormatted,
 			Map<String, BigDecimal> salesDataSums) {
+		
+		// Hard code the expected output format:
 		List<String> exportData = new ArrayList<>();
 		exportData.add(title + " Yearly Sales Report");
 		exportData.add("---------------------------");
@@ -131,6 +127,8 @@ public class FileService {
 			BigDecimal value = entry.getValue();
 			collectEntries.add(key + " -> " + value);
 		});
+		
+		// Workaround: file prints 2019, 2018, 2017 so reverse it:
 		Collections.reverse(collectEntries);
 		for (String entry: collectEntries) {
 			exportData.add(entry);

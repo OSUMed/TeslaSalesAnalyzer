@@ -12,6 +12,7 @@ public class Sales {
 		this.sales = new BigDecimal(sales);
 	}
 	public Sales(String date, String sales, String year) {
+		// Convert parsed string to BigDecimal:
 		this.date = date;
 		this.sales = new BigDecimal(sales);
 		this.year = year;
